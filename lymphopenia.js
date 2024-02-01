@@ -140,8 +140,17 @@ const slp = d3.scaleLinear()
         .text("Probability of SLP");
 
 
+function update_slp(){
+    //var m = d3.selectAll(("input[name='gender']")); //error
+    /*
+
+    Console.Log(m)
+    */
+}
+
+d3.select("#brain_dose").on("input", function(){ update_slp(); console.log("Brain dose"+this.value)  });
+d3.select("#baseline").on("input", function(){ update_slp(); console.log("BaselineALC"+this.value)  });
+d3.select("#gender").on("click", function(){ update_slp();console.log("gender"+this.value)  });
 
 // Return the SVG element.
 plot_div.append(svg.node());
-//  return svg.node();
-
