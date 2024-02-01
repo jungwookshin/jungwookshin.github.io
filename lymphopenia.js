@@ -7,47 +7,7 @@ const gap = 100
 // 100 scale
 full_scale = width - margin.left - margin.right
 
-/*
-  Sex Points
- 0    0
- 1   36
-
- Brain_Dmean Points
-  5            0
- 10           11
- 15           22
- 20           33
- 25           44
- 30           56
- 35           67
- 40           78
- 45           89
- 50          100
-
- Baseline_ALC Points
- 0.0          88
- 0.5          81
- 1.0          75
- 1.5          69
- 2.0          63
- 2.5          56
- 3.0          50
- 3.5          44
- 4.0          38
- 4.5          31
- 5.0          25
- 5.5          19
- 6.0          13
- 6.5           6
- 7.0           0
-
- Total Points Probability of SLP
-           47               0.01
-          100               0.05
-          150               0.20
-          207               0.60
-*/
-
+//gender: female 0, male 1
 domain = {pts:[0,100], gender:[0,1], brain_dmean:[5,50],
           baseline:[7.0,0.0], tot_pts:[0, 220], slp:[0.01, 0.6]}
 

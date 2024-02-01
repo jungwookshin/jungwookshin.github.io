@@ -8,7 +8,18 @@
 </head>
 <body>
     <div id="plot_div"></div>
-    <div id="yourDiv"></div>
+    <p>
+      <label> Brain Dose mean (Gy) </label>
+      <input type="number" min="5", max="50" step="1" value="20" id="brain_dose">
+    </p>
+    <p>
+      <input type="radio" name="gender" value="0">Male<br>
+      <input type="radio" name="gender" value="1">Female<br>
+    </p>
+    <p>
+      <label> BaseLine ALC (uL) </label>
+      <input type="number" min="0.0", max="7.0" value="0.0" id="baseline">
+    </p>
     <script src="lymphopenia.js"></script>
 
 </body>
