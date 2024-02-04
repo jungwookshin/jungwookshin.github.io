@@ -179,6 +179,9 @@ var input_dose   = 45.0
 var input_baseline = 5.0 
 var input_total = total_points(input_gender, input_dose, input_baseline)
 var input_slp = probability(input_total)
+
+// currently, we connect point with line but can change to arrow with a path.
+//https://observablehq.com/@harrylove/draw-an-arrowhead-marker-connected-to-a-line-in-d3
 // -----------------------------------------//
 // Gender and its point
 // -----------------------------------------//
