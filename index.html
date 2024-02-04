@@ -10,15 +10,15 @@
     <div id="plot_div"></div>
     <p>
       <label> Brain Dose mean (Gy) </label>
-      <input type="number" min="5", max="50" step="1" value="20" id="brain_dose">
+      <input type="number" min="5", max="50" step="1" value="45" id="brain_dose">
     </p>
     <p>
-      <input type="radio" name="gender" value="0" checked="checked">Male<br>
-      <input type="radio" name="gender" value="1">Female<br>
+      <input id="male" type="radio" name="gender" value="0" >Male<br>
+      <input id="female" type="radio" name="gender" value="1" checked="checked">Female<br>
     </p>
     <p>
       <label> BaseLine ALC (uL) </label>
-      <input type="number" min="0.0", max="7.0" value="0.0" id="baseline">
+      <input type="number" min="0.0", max="7.0" value="5.0" id="baseline">
     </p>
     <script src="lymphopenia.js"></script>
 
