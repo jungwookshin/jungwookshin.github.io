@@ -174,159 +174,209 @@ function probability(points){
     return  9e-08 * (points**3) + -5.93e-06 * (points**2) + 4.978e-05 * points + 0.01104449
 }
 
-var input_gender = true //female:true, male:false
-var input_dose   = 45.0 
+
+// -----------------------------------------//
+// Initialize variables
+// -----------------------------------------//
+// input
+var input_gender   = true //female:true, male:false
+var input_dose     = 45.0 
 var input_baseline = 5.0 
-var input_total = total_points(input_gender, input_dose, input_baseline)
-var input_slp = probability(input_total)
-// -----------------------------------------//
-// Gender and its point
-// -----------------------------------------//
-var output_gender = gender_points(input_gender)
-var pts_gender    = pts(output_gender)
-
-svg.append("circle")
-    .attr("cx", gender(input_gender))
-    .attr("cy", margin.top+1*gap)
-    .attr("stroke", "red")
-    .attr("stroke-width", 2)
-    .attr("fill", "red")
-    .attr("r", 5)
-
-svg.append("circle")
-    .attr("cx", pts_gender)
-    .attr("cy", margin.top+0*gap)
-    .attr("stroke", "red")
-    .attr("stroke-width", 2)
-    .attr("fill", "red")
-    .attr("r", 5)
-
-svg.append("line")
-    .style("stroke", "red")
-    .attr("x1" , pts_gender)
-    .attr("y1" , margin.top+0.0*gap )
-    .attr("x2" , pts_gender)
-    .attr("y2" , margin.top+1*gap)
-
-// -----------------------------------------//
-// Brain Dmean and its point
-// -----------------------------------------//
-var output_dose = dose_points(input_dose)
-var pts_dose    = pts(output_dose)
-
-svg.append("circle")
-    .attr("cx", brain_dmean(input_dose))
-    .attr("cy", margin.top+2*gap)
-    .attr("stroke", "green")
-    .attr("r", 5)
-
-svg.append("circle")
-    .attr("cx", pts_dose)
-    .attr("stroke", "green")
-    .attr("cy", margin.top+0*gap)
-    .attr("r", 5)
-
-svg.append("line")
-    .style("stroke", "green")
-    .attr("x1" , pts_dose)
-    .attr("y1" , margin.top+0.0*gap )
-    .attr("x2" , pts_dose)
-    .attr("y2" , margin.top+2*gap)
-
-// -----------------------------------------//
-// Baseline and its point
-// -----------------------------------------//
-var output_baseline = baseline_points(input_baseline)
-var pts_baseline    = pts(output_baseline)
-
-svg.append("circle")
-    .attr("stroke", "blue")
-    .attr("cx", baseline(input_baseline))
-    .attr("cy", margin.top+3*gap)
-    .attr("r", 5)
-
-svg.append("circle")
-    .attr("stroke", "blue")
-    .attr("cx", pts(baseline_points(input_baseline)))
-    .attr("cy", margin.top+0*gap)
-    .attr("r", 5)
-
-svg.append("line")
-    .style("stroke", "blue")
-    .attr("x1" , pts_baseline)
-    .attr("y1" , margin.top+0.0*gap )
-    .attr("x2" , pts_baseline)
-    .attr("y2" , margin.top+3*gap)
 
 
-// -----------------------------------------//
-// Total points
-// -----------------------------------------//
-svg.append("circle")
-    .attr("cx", tot_pts(input_total))
-    .attr("cy", margin.top+4*gap)
-    .attr("r", 5)
+function draw_nomogram(){
+    
+    // output
+    var output_gender   = gender_points(input_gender)
+    var pts_gender      = pts(output_gender)
+    var output_dose     = dose_points(input_dose)
+    var pts_dose        = pts(output_dose)
+    var output_baseline = baseline_points(input_baseline)
+    var pts_baseline    = pts(output_baseline)
+    
+    svg.append("circle")
+        .attr("class", "gender_select")
+        .attr("cx", gender(input_gender))
+        .attr("cy", margin.top+1*gap)
+        .attr("stroke", "red")
+        .attr("stroke-width", 2)
+        .attr("fill", "red")
+        .attr("r", 5)
 
-// three lines to total point
-svg.append("line")
-    .style("stroke", "red")
-    .attr("x1" , pts_gender)
-    .attr("y1" , margin.top+1*gap)
-    .attr("x2" , tot_pts(input_total))
-    .attr("y2" , margin.top+4*gap )
+    svg.append("circle")
+        .attr("class", "gender_point")
+        .attr("cx", pts_gender)
+        .attr("cy", margin.top+0*gap)
+        .attr("stroke", "red")
+        .attr("stroke-width", 2)
+        .attr("fill", "red")
+        .attr("r", 5)
 
-svg.append("line")
-    .style("stroke", "green")
-    .attr("x1" , pts_dose)
-    .attr("y1" , margin.top+2*gap)
-    .attr("x2" , tot_pts(input_total))
-    .attr("y2" , margin.top+4*gap )
+    svg.append("circle")
+        .attr("class", "dose_input")
+        .attr("cx", brain_dmean(input_dose))
+        .attr("cy", margin.top+2*gap)
+        .attr("stroke", "green")
+        .attr("r", 5)
 
-svg.append("line")
-    .style("stroke", "blue")
-    .attr("x1" , pts_baseline)
-    .attr("y1" , margin.top+3*gap)
-    .attr("x2" , tot_pts(input_total))
-    .attr("y2" , margin.top+4*gap )
+    svg.append("circle")
+        .attr("class", "dose_point")
+        .attr("cx", pts_dose)
+        .attr("stroke", "green")
+        .attr("cy", margin.top+0*gap)
+        .attr("r", 5)
 
+    svg.append("circle")
+        .attr("class", "baseline_input")
+        .attr("stroke", "blue")
+        .attr("cx", baseline(input_baseline))
+        .attr("cy", margin.top+3*gap)
+        .attr("r", 5)
 
-// -----------------------------------------//
-// Probability of SLP
-// -----------------------------------------//
-svg.append("circle")
-    .attr("cx", slp(input_slp))
-    .attr("cy", margin.top+5*gap)
-    .attr("r", 5)
+    svg.append("circle")
+        .attr("class", "baseline_point")
+        .attr("stroke", "blue")
+        .attr("cx", pts(baseline_points(input_baseline)))
+        .attr("cy", margin.top+0*gap)
+        .attr("r", 5)
 
-svg.append("line")
-    .style("stroke", "black")
-    .attr("x1" , tot_pts(input_total))
-    .attr("y1" , margin.top+4*gap )
-    .attr("x2" , slp(input_slp))
-    .attr("y2" , margin.top+5*gap)
-    .attr("marker-end", "url(#triangle)");
+    // -----------------------------------------//
+    // Total points
+    // -----------------------------------------//
+    var input_total    = total_points(input_gender, input_dose, input_baseline)
+    var input_slp      = probability(input_total)
+    svg.append("circle")
+        .attr("class", "total_input")
+        .attr("cx", tot_pts(input_total))
+        .attr("cy", margin.top+4*gap)
+        .attr("r", 5)
 
-
-function update_slp(){
-    //var m = d3.selectAll(("input[name='gender']")); //error
-    console.log("update")
-    /*
-
-
-     */
+    // -----------------------------------------//
+    // Probability of SLP
+    // -----------------------------------------//
+    svg.append("circle")
+        .attr("class", "total_slp")
+        .attr("cx", slp(input_slp))
+        .attr("cy", margin.top+5*gap)
+        .attr("r", 5)
+    
+    d3.select("#slp_value").text((100.0*input_slp).toPrecision(2))
 }
 
+function update_nomogram(){
+
+    var output_gender   = gender_points(input_gender)
+    var output_dose     = dose_points(input_dose)
+    var output_baseline = baseline_points(input_baseline)
+
+    var pts_gender      = pts(output_gender)
+    var pts_dose        = pts(output_dose)
+    var pts_baseline    = pts(output_baseline)
+    
+    svg.select("circle.gender_select")
+        .attr("cx", gender(input_gender))
+
+    svg.select("circle.gender_point")
+        .attr("cx", pts_gender)
+
+    svg.select("circle.dose_input")
+        .attr("cx", brain_dmean(input_dose))
+    
+    svg.select("circle.dose_point")
+        .attr("cx", pts_dose)
+
+    svg.select("circle.baseline_input")
+        .attr("cx", baseline(input_baseline))
+    
+    svg.select("circle.baseline_point")
+        .attr("cx", pts_baseline)
+
+    var input_total    = total_points(input_gender, input_dose, input_baseline)
+    var input_slp      = probability(input_total)
+    svg.select("circle.total_input")
+        .attr("cx", tot_pts(input_total))
+
+
+    // -----------------------------------------//
+    // Probability of SLP
+    // -----------------------------------------//
+    svg.select("circle.total_slp")
+        .attr("cx", slp(input_slp))
+
+    d3.select("#slp_value").text((100.0*input_slp).toPrecision(2))
+}
+
+function draw_slp(){
+    svg.append("line")
+        .style("stroke", "red")
+        .attr("x1" , pts_gender)
+        .attr("y1" , margin.top+0.0*gap )
+        .attr("x2" , pts_gender)
+        .attr("y2" , margin.top+1*gap)
+    
+    svg.append("line")
+        .style("stroke", "green")
+        .attr("x1" , pts_dose)
+        .attr("y1" , margin.top+0.0*gap )
+        .attr("x2" , pts_dose)
+        .attr("y2" , margin.top+2*gap)
+
+    svg.append("line")
+        .style("stroke", "blue")
+        .attr("x1" , pts_baseline)
+        .attr("y1" , margin.top+0.0*gap )
+        .attr("x2" , pts_baseline)
+        .attr("y2" , margin.top+3*gap)
+
+    // three lines to total point
+    svg.append("line")
+        .style("stroke", "red")
+        .attr("x1" , pts_gender)
+        .attr("y1" , margin.top+1*gap)
+        .attr("x2" , tot_pts(input_total))
+        .attr("y2" , margin.top+4*gap )
+
+    svg.append("line")
+        .style("stroke", "green")
+        .attr("x1" , pts_dose)
+        .attr("y1" , margin.top+2*gap)
+        .attr("x2" , tot_pts(input_total))
+        .attr("y2" , margin.top+4*gap )
+
+    svg.append("line")
+        .style("stroke", "blue")
+        .attr("x1" , pts_baseline)
+        .attr("y1" , margin.top+3*gap)
+        .attr("x2" , tot_pts(input_total))
+        .attr("y2" , margin.top+4*gap )
+
+    svg.append("line")
+        .style("stroke", "black")
+        .attr("x1" , tot_pts(input_total))
+        .attr("y1" , margin.top+4*gap )
+        .attr("x2" , slp(input_slp))
+        .attr("y2" , margin.top+5*gap)
+        .attr("marker-end", "url(#triangle)");
+}
+
+
+draw_nomogram()
+
 d3.select("#male").on("change", function(){
-    update_slp();console.log("gender"+this.value)
+    input_gender = false 
+    update_nomogram();
 });
 d3.select("#female").on("change", function(){
-    update_slp();console.log("gender"+this.value)
+    input_gender = true 
+    update_nomogram();
 });
 d3.select("#brain_dose").on("input", function(){
-    console.log("Brain dose"+this.value)
+    input_dose     =  this.value
+    update_nomogram();
 });
 d3.select("#baseline").on("input", function(){
-    console.log("BaselineALC"+this.value)
+    input_baseline = this.value
+    update_nomogram();
 });
 
 
